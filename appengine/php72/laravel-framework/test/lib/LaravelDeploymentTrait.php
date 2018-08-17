@@ -17,11 +17,13 @@
 
 namespace Google\Cloud\Samples\AppEngine\Laravel;
 
+use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use Google\Cloud\TestUtils\ExecuteCommandTrait;
 use Google\Cloud\TestUtils\FileUtil;
 
-trait DeployLaravelTrait
+trait LaravelDeploymentTrait
 {
+    use AppEngineDeploymentTrait;
     use ExecuteCommandTrait;
 
     private static function createLaravelProject()
@@ -38,12 +40,11 @@ trait DeployLaravelTrait
 
         // move the code for the sample to the new laravel installation
         $files = [
-            // '.gcloudignore',
             'bootstrap/app.php',
             'config/view.php',
         ];
         foreach ($files as $file) {
-            $source = sprintf('%s/../%s', __DIR__, $file);
+            $source = sprintf('%s/../../%s', __DIR__, $file);
             $target = sprintf('%s/%s', $tmpDir, $file);
             copy($source, $target);
         }

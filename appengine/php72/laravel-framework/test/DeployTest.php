@@ -20,10 +20,11 @@ namespace Google\Cloud\Samples\AppEngine\Laravel;
 use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use PHPUnit\Framework\TestCase;
 
+require_once __DIR__ . '/lib/LaravelDeploymentTrait.php';
+
 class DeployTest extends TestCase
 {
-    use DeployLaravelTrait;
-    use AppEngineDeploymentTrait;
+    use LaravelDeploymentTrait;
 
     public static function beforeDeploy()
     {

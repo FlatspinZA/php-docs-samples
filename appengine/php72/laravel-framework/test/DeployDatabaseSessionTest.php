@@ -17,15 +17,15 @@
 
 namespace Google\Cloud\Samples\AppEngine\Laravel;
 
-use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use Google\Cloud\TestUtils\TestTrait;
 use PHPUnit\Framework\TestCase;
+
+require_once __DIR__ . '/lib/LaravelDeploymentTrait.php';
 
 class DeployDatabaseSessionTest extends TestCase
 {
     use TestTrait;
-    use DeployLaravelTrait;
-    use AppEngineDeploymentTrait;
+    use LaravelDeploymentTrait;
 
     public static function beforeDeploy()
     {
@@ -52,9 +52,6 @@ class DeployDatabaseSessionTest extends TestCase
         file_put_contents($tmpDir . '/app.yaml', $appYaml);
 
         self::addAppKeyToAppYaml($tmpDir);
-
-        // self::execute('php artisan session:table');
-        // self::execute('php artisan migrate --force');
     }
 
     public function testHomepage()
